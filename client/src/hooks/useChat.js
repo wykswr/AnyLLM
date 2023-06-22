@@ -32,7 +32,7 @@ const useChat = (api_key) => {
     }, [api_key]);
 
     const sendMessage = (message) => {
-        const jsonData = {human: message}; // Your JSON data
+        const jsonData = {sender: "human", text: message}; // Your JSON data
         const jsonString = JSON.stringify(jsonData); // Convert JSON to string
         socket.send(jsonString);
         appendMessage(jsonData)

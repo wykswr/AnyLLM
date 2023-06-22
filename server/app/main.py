@@ -14,11 +14,11 @@ async def root():
 async def chat_endpoint(websocket: WebSocket, api_key: str):
     await websocket.accept()
     chatbot = AI21ChatBot(api_key=api_key)
-    await websocket.send_json({"bot": "Hello World"})
+    await websocket.send_json({"sender": "bot", "text": "Hello, I am a chatbot."})
     while True:
         try:
             data = await websocket.receive_json()
-            bot_response = chatbot.chat(human_input=data["human"])
-            await websocket.send_json({"bot": bot_response})
+            bot_response = chatbot.chat(human_input=data["text"])
+            await websocket.send_json({"sender": "bot", "text": bot_response})
         except WebSocketDisconnect:
             break
