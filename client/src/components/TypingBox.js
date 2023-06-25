@@ -1,10 +1,5 @@
 import {useEffect, useState} from "react";
 
-const Cursor = () => {
-    return (
-        <span className={"animate-flicker"}>▌</span>
-    );
-}
 
 const TypingBox = ({sender, text}) => {
     const [content, setContent] = useState("");
@@ -24,12 +19,12 @@ const TypingBox = ({sender, text}) => {
         } else {
             setContent(text);
         }
-    }, [index]);
+    }, [content, index, sender, text]);
 
     return (
         sender === "bot" ?
         <div className="rounded-xl text-justify bg-blue-400 text-white p-2 md:w-5/12">
-            <p>{content}{cursor && <Cursor/>}</p>
+            <p>{content}{cursor && <span className={"animate-flicker"}>▌</span>}</p>
         </div> :
         <div className="rounded-xl text-justify bg-gray-500 text-white p-2 md:w-5/12 md:self-end">
             <p>{content}</p>

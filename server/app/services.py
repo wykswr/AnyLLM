@@ -5,21 +5,23 @@ from langchain.prompts.prompt import PromptTemplate
 
 
 class AI21ChatBot:
+    LLM = "AI21"
+
     def __init__(self, api_key):
         template = """
-        You are a Chatbot.
-        Your goal is to chat with a human.
+        Your name is Alice. You are a assistant to provide helpful information to human.
+        Your gender is female.
 
         {chat_history}
         Human: {human_input}
-        Chatbot:"""
+        Alex:"""
 
         prompt = PromptTemplate(
             input_variables=["chat_history", "human_input"],
             template=template
         )
 
-        memory = ConversationBufferMemory(memory_key="chat_history", ai_prefix="Chatbot")
+        memory = ConversationBufferMemory(memory_key="chat_history", ai_prefix="Alice")
 
         llm_chain = LLMChain(
             llm=AI21(ai21_api_key=api_key),
