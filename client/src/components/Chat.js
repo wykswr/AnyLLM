@@ -2,8 +2,8 @@ import useChat from "../hooks/useChat";
 import {useRef} from "react";
 import TypingBox from "./TypingBox";
 
-const Chat = ({api_key}) => {
-    const [messages, sendMessage] = useChat(api_key);
+const Chat = () => {
+    const [messages, sendMessage] = useChat();
     const inputRef = useRef();
     const handleSend = () => {
         sendMessage(inputRef.current.value);

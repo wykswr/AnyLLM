@@ -9,7 +9,7 @@ const ChatPage = () => {
         <div className={"container mx-auto mt-8"}>
             <h1 className={"text-xl font-semibold"}>Model: {model}</h1>
             {api_key &&
-                <Chat api_key={api_key}/>
+                <Chat />
             }
         </div>
 

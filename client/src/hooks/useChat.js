@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 
-const useChat = (api_key) => {
+const useChat = () => {
     const [messages, setMessages] = useState([]);
     const [socket, setSocket] = useState(null);
     const appendMessage = (message) => {
@@ -8,8 +8,7 @@ const useChat = (api_key) => {
     }
 
     useEffect(() => {
-        const queryParams = '?api_key=' + api_key;
-        const ws = new WebSocket('ws://localhost:8000/chat' + queryParams);
+        const ws = new WebSocket('ws://localhost:8000/chat');
 
         ws.onopen = () => {
             console.log('WebSocket connected');
@@ -29,7 +28,7 @@ const useChat = (api_key) => {
         return () => {
             ws.close();
         };
-    }, [api_key]);
+    }, []);
 
     const sendMessage = (message) => {
         const jsonData = {sender: "human", text: message}; // Your JSON data

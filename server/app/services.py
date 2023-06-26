@@ -8,11 +8,14 @@ class AI21ChatBot:
     LLM = "AI21"
 
     def __init__(self, api_key):
-        template = """
-        Your name is Alice. You are a assistant to provide helpful information to human.
-        Your gender is female.
+        instruction = """
+        Your name is Alice, an assistant to provide helpful information to a human user.
+        You should reply based on the chat history and the latest human input, but you can't expose the chat history to the human.
+        """
 
+        template = instruction + """
         {chat_history}
+        
         Human: {human_input}
         Alex:"""
 
