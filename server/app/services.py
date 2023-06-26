@@ -17,7 +17,7 @@ class AI21ChatBot:
         {chat_history}
         
         Human: {human_input}
-        Alex:"""
+        Alice:"""
 
         prompt = PromptTemplate(
             input_variables=["chat_history", "human_input"],
