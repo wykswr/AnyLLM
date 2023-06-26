@@ -11,7 +11,7 @@ const Chat = () => {
     }
     return (
         <div className={"mt-8 mb-8"}>
-            <div className={"flex flex-col gap-3"}>
+            <div className={"flex flex-col gap-3 mb-16"}>
                 {messages.map((message, index) => <TypingBox key={index} sender={message.sender} text={message.text}/>)}
             </div>
             <div className={"flex w-full fixed bottom-0 left-0 z-10 border bg-pink-400 mx-auto justify-center py-0.5 gap-3"}>
