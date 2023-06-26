@@ -13,7 +13,7 @@ class AI21ChatBot:
         You should reply based on the chat history and the latest human input, but you can't expose the chat history to the human.
         """
 
-        template = instruction + """
+        template = instruction + '\n' + """
         {chat_history}
         
         Human: {human_input}

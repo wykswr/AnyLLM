@@ -4,8 +4,8 @@ import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/20/solid";
 
 const models = [
     {id: 1, name: 'AI21', unavailable: false},
-    // {id: 2, name: 'GPT3', unavailable: false},
-    // {id: 3, name: 'GPT4', unavailable: false},
+    {id: 2, name: 'GPT3', unavailable: false},
+    {id: 3, name: 'GPT4', unavailable: true},
 ]
 
 const ModelSelect = forwardRef((props, ref) => {

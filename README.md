@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a web based AI assistant system, it can be powered by a variety of language models (LLM).
+This is a web based AI assistant system, it can be powered by a variety of large language models (LLM).
 AnyLLM has memory, even if the LLM you use doesn't support that.
 
 ## Usage
