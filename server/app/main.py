@@ -1,10 +1,19 @@
 from typing import Annotated
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Depends, Cookie
+from fastapi.middleware.cors import CORSMiddleware
 
-from .services import AI21ChatBot
+from .services import get_chatbot_maker
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class ModelApiExtractor:
@@ -19,14 +28,14 @@ async def root():
 
 
 @app.get("/models")
-async def models() -> list[str]:
-    return ["AI21", "GPT3", "GPT4"]
+async def models() -> list[dict]:
+    return [{"id": idx, "name": value} for idx, value in enumerate(get_chatbot_maker().keys())]
 
 
 @app.websocket("/chat")
 async def chat_endpoint(websocket: WebSocket, config: Annotated[ModelApiExtractor, Depends()]):
     await websocket.accept()
-    chatbot = AI21ChatBot(api_key=config.api_key)
+    chatbot = get_chatbot_maker()[config.model](config.api_key)
     await websocket.send_json({"sender": "bot", "text": "Hello, Alice here, how can I help you?"})
     while True:
         try:

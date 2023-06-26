@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import {wsURL} from "../services/api";
 
 const useChat = () => {
     const [messages, setMessages] = useState([]);
@@ -8,7 +9,7 @@ const useChat = () => {
     }
 
     useEffect(() => {
-        const ws = new WebSocket('ws://localhost:8000/chat');
+        const ws = new WebSocket(wsURL);
 
         ws.onopen = () => {
             console.log('WebSocket connected');
