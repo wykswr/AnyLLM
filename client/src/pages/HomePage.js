@@ -17,6 +17,7 @@ const HomePage = () => {
         navigate("/chat");
     }
 
+
     return (
         <div className={"container mx-auto h-screen grid grid-rows-4 items-start mt-8 justify-items-center"}>
             <h1 className={"text-2xl uppercase font-bold text-indigo-500"}>Chat with any LLM</h1>
@@ -25,7 +26,7 @@ const HomePage = () => {
                     <label htmlFor="key-input" className={"text-start text-pink-400 font-semibold"}>API key:</label>
                     <input type="text" id="key-input" className={"col-span-4 py-0.5 px-2 rounded-lg border-gray-400"}
                            placeholder="The API key from your language model provider" ref={apiKeyRef}/>
-                    <h3 className={"text-start text-pink-400 font-semibold"}>Model provider:</h3>
+                    <h3 className={"text-start text-pink-400 font-semibold"}>Model:</h3>
                     <ModelSelect ref={modelRef} className={"col-span-4"}/>
                 </div>
 
