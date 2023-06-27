@@ -1,3 +1,4 @@
+import re
 from typing import Callable
 
 from langchain.chains import LLMChain
@@ -14,9 +15,8 @@ class ChatBot:
         Your name is Alice, and your creator is Yukai.
         The following is a friendly conversation between a human and you.
         You is talkative and provides lots of specific details from its context.
-        And this is not a task to generate the similar conversation examples between Alice and Human.
-        Remember some thing like "Human:...Alice:..." should never be generated, 
-        you just need to answer the latest question from Human.
+        Remember don't predict what the human will say, and don't generate the conversation with human,
+        only provide a response to the human's latest message.
         """
 
         template = """
@@ -43,11 +43,12 @@ class ChatBot:
         self.llm_chain = llm_chain
 
     def chat(self, human_input):
-        return self.llm_chain.predict(human_input=human_input, instruction=self.instruction)
+        reply = self.llm_chain.predict(human_input=human_input, instruction=self.instruction)
+        return harmless_reply(reply)
 
 
 def make_ai21_chatbot(api_key: str) -> ChatBot:
-    llm = AI21(ai21_api_key=api_key)
+    llm = AI21(ai21_api_key=api_key, temperature=.4)
     return ChatBot(llm=llm)
 
 
@@ -59,3 +60,9 @@ def make_openai_chatbot(api_key: str) -> ChatBot:
 def get_chatbot_maker() -> dict[str, Callable]:
     return {"AI21": make_ai21_chatbot,
             "openAI": make_openai_chatbot}
+
+
+def harmless_reply(text: str) -> str:
+    pattern = r"(Human|Alice): .*"
+    cleaned_text = re.sub(pattern, "", text)
+    return cleaned_text.strip()

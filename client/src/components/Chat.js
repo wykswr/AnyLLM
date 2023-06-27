@@ -23,7 +23,7 @@ const Chat = () => {
             <div className={"flex flex-col gap-3 mb-16"}>
                 {messages.map((message, index) => <TypingBox key={index} sender={message.sender} text={message.text}/>)}
             </div>
-            <div className={"flex w-full fixed bottom-0 left-0 z-10 border bg-pink-400 mx-auto justify-center py-3 gap-3"}>
+            <div className={"flex w-full fixed bottom-0 left-0 z-10 border bg-pink-400 rounded-sm mx-auto justify-center py-3 gap-3"}>
                 <input type="text" ref={inputRef} className={"w-1/2 rounded-md caret-pink-500"} onKeyDown={handleKeyDown}/>
                 <button
                     className={"bg-blue-300 rounded-md hover:bg-blue-400 w-14 text-white"}
